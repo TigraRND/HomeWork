@@ -33,12 +33,10 @@ public class TitleTest {
         driver.get("https://otus.ru");
         logger.info("Переход по адресу https://otus.ru");
 
-//        TestsData testdata = ConfigFactory.create(TestsData.class);
         logger.info("Подготовка тестовых данных");
 
         logger.info("Старт теста");
         String actual = driver.getTitle();
-//        String expected = testdata.mainTitle();
         if (expected == null)
             logger.error("NullPointerException");
         Assert.assertTrue(actual.contains(expected));
