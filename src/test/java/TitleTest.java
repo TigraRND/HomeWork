@@ -16,41 +16,35 @@ public class TitleTest {
     TestsData testdata = ConfigFactory.create(TestsData.class);
 
     @Before
-    public void Start(){
+    public void start(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         logger.info("Web Driver создан");
     }
 
     @After
-    public void Ending(){
+    public void ending(){
         if(driver != null)
             driver.quit();
         logger.info("Web Driver закрыт");
     }
 
-    public void CheckTitle(String expected){
+    public void checkTitle(String expected){
         driver.get("https://otus.ru");
         logger.info("Переход по адресу https://otus.ru");
-
-        logger.info("Подготовка тестовых данных");
-
-        logger.info("Старт теста");
         String actual = driver.getTitle();
-        if (expected == null)
-            logger.error("NullPointerException");
         Assert.assertTrue(actual.contains(expected));
         logger.info("Тест завершен");
     }
 
     @Test
-    public void CheckMainTitle(){
-        CheckTitle(testdata.mainTitle());
+    public void checkMainTitle(){
+        checkTitle(testdata.mainTitle());
     }
 
     @Test
-    public void CheckSpecialTitle(){
-        CheckTitle(testdata.celebratoryTitle());
+    public void checkSpecialTitle(){
+        checkTitle(testdata.celebratoryTitle());
     }
 
 }
