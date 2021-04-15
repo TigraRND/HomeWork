@@ -2,10 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -15,36 +12,41 @@ public class TitleTest {
     protected static WebDriver driver;
     TestsData testdata = ConfigFactory.create(TestsData.class);
 
-    @Before
-    public void start(){
+    @BeforeClass
+    public static void start(){
+        Logger log = LogManager.getLogger(TitleTest.class);
+        log.info("******************** Новый запуск ********************");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        logger.info("Web Driver создан");
+        log.info("Web Driver создан");
+        driver.get("https://otus.ru");
+        log.info("Переход по адресу https://otus.ru");
+    }
+
+    @AfterClass
+    public static void ending(){
+        if(driver != null)
+            driver.quit();
+        Logger log = LogManager.getLogger(TitleTest.class);
+        log.info("Все тесты завершены");
+        log.info("Web Driver закрыт");
     }
 
     @After
-    public void ending(){
-        if(driver != null)
-            driver.quit();
-        logger.info("Web Driver закрыт");
-    }
-
-    public void checkTitle(String expected){
-        driver.get("https://otus.ru");
-        logger.info("Переход по адресу https://otus.ru");
-        String actual = driver.getTitle();
-        Assert.assertTrue(actual.contains(expected));
+    public void logging (){
         logger.info("Тест завершен");
     }
 
     @Test
     public void checkMainTitle(){
-        checkTitle(testdata.mainTitle());
+        String actual = driver.getTitle();
+        Assert.assertEquals(testdata.mainTitle(), actual);
     }
 
     @Test
     public void checkSpecialTitle(){
-        checkTitle(testdata.celebratoryTitle());
+        String actual = driver.getTitle();
+        Assert.assertTrue(actual.contains(testdata.celebratoryTitle()));
     }
 
 }
