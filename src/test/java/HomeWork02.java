@@ -13,6 +13,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 public class HomeWork02 {
     protected static WebDriver driver;
     private Logger log = LogManager.getLogger(HomeWork02.class);
@@ -22,6 +25,8 @@ public class HomeWork02 {
     public void StartUp(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        //Настрока не явных ожиданий с таймаутом 3 секунды
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         log.info("Web Driver поднят");
     }
 
@@ -36,14 +41,14 @@ public class HomeWork02 {
         driver.get("https://otus.ru");
         log.info("Переход по адресу https://otus.ru");
 
-        By contacts = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
-        getElement(contacts).click();
+        By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
+        getElement(contactsLink).click();
         log.info("Переход на страницу Контакты");
 
-        log.info("Проверка адреса на странице Контакты");
         By address = By.xpath("//div[text()='Адрес']/following-sibling::div");
         String addressText = getElement(address).getText();
         Assert.assertEquals(testsData.contactsAddress(),addressText);
+        log.info("Проверка адреса на странице Контакты");
     }
 
     @Test
@@ -51,15 +56,15 @@ public class HomeWork02 {
         driver.get("https://otus.ru");
         log.info("Переход по адресу https://otus.ru");
 
-        By contacts = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
-        getElement(contacts).click();
+        By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
+        getElement(contactsLink).click();
         log.info("Переход на страницу Контакты");
 
         driver.manage().window().maximize();
         log.info("Браузер развернут на полный экран");
 
-        log.info("Проверка Title страницы");
         Assert.assertEquals(testsData.contactsTitle(), driver.getTitle());
+        log.info("Проверка Title страницы");
     }
 
     @Test
@@ -71,11 +76,51 @@ public class HomeWork02 {
         getElement(searchNumber).clear();
         getElement(searchNumber).sendKeys("97");
         log.info("Поиск номеров по цифрам 97");
-        //TODO написать явное ожидание на загрузку номеров
-        // запросить номера телефонов через findElements по селектору
-        // div.phone-number-block
-        // проверить что вернулось 20 штук номеров
 
+        List<WebElement> elements = driver.findElements(By.cssSelector("span.phone-number"));
+        Assert.assertEquals(24,elements.size());
+        log.info("Проверка количества вернувшихся элементов");
+
+//      TODO разобраться почему возвращается 24 элемента вместо 20
+//       как проверить что вернулось >= 20 элементов?
+    }
+
+    @Test
+    public void Test04(){
+        driver.get("https://otus.ru");
+        log.info("Переход по адресу https://otus.ru");
+
+        By faqLink = By.cssSelector("a[href=\"/faq/\"].header2_subheader-link");
+        getElement(faqLink).click();
+        log.info("Переход на страницу FAQ");
+
+        By questionLink = By.xpath("//div[text()='Где посмотреть программу интересующего курса?']");
+        getElement(questionLink).click();
+        log.info("Нажатие на ссылку с вопросом");
+
+        By answerText = By.xpath("//div[text()='Где посмотреть программу интересующего курса?']/following-sibling::div");
+        String actual = getElement(answerText).getText();
+        Assert.assertEquals(testsData.answerText(), actual);
+        log.info("Проверка текста ответа");
+    }
+
+    @Test
+    public void Test05(){
+        driver.get("https://otus.ru");
+        log.info("Переход по адресу https://otus.ru");
+
+        By emailInput = By.xpath("//input[@class='input footer2__subscribe-input']");
+        getElement(emailInput).sendKeys(testsData.testEmail());
+        log.info("Ввод тестового email в поле");
+
+        By submitButton = By.xpath("//button[@class='footer2__subscribe-button button button_blue button_as-input']");
+        getElement(submitButton).click();
+        log.info("Нажатие на кнопку Подписаться");
+
+        By subscribeConfirm = By.xpath("//p[@class='subscribe-modal__success']");
+        String actual = getElement(subscribeConfirm).getText();
+        Assert.assertEquals(testsData.subscribeConfirm(), actual);
+        log.info("Проверка текста об успешной подписке");
     }
 
     private WebElement getElement(By locator){

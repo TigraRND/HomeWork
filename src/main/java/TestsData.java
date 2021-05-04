@@ -6,4 +6,7 @@ public interface TestsData extends Config {
     String celebratoryTitle();
     String contactsTitle();
     String contactsAddress();
+    String answerText();
+    String testEmail();
+    String subscribeConfirm();
 }
