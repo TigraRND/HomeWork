@@ -13,7 +13,7 @@ public class HomeWork01 {
     TestsData testsData = ConfigFactory.create(TestsData.class);
 
     @BeforeClass
-    public static void start(){
+    public static void startUp(){
         Logger log = LogManager.getLogger(HomeWork01.class);
         log.info("******************** Новый запуск ********************");
         WebDriverManager.chromedriver().setup();
@@ -24,7 +24,7 @@ public class HomeWork01 {
     }
 
     @AfterClass
-    public static void ending(){
+    public static void shutDown(){
         if(driver != null)
             driver.quit();
         Logger log = LogManager.getLogger(HomeWork01.class);

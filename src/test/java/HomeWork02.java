@@ -12,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +21,7 @@ public class HomeWork02 {
     TestsData testsData = ConfigFactory.create(TestsData.class);
 
     @Before
-    public void StartUp(){
+    public void startUp(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         //Настрока не явных ожиданий с таймаутом 3 секунды
@@ -31,13 +30,13 @@ public class HomeWork02 {
     }
 
     @After
-    public void ShutDown(){
+    public void shutDown(){
         if (driver!=null)
             driver.quit();
     }
 
     @Test
-    public void Test01(){
+    public void test01(){
         driver.get("https://otus.ru");
         log.info("Переход по адресу https://otus.ru");
 
@@ -52,7 +51,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void Test02(){
+    public void test02(){
         driver.get("https://otus.ru");
         log.info("Переход по адресу https://otus.ru");
 
@@ -68,7 +67,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void Test03(){
+    public void test03(){
         driver.get("https://msk.tele2.ru/shop/number");
         log.info("Переход по адресу https://msk.tele2.ru/shop/number");
 
@@ -86,7 +85,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void Test04(){
+    public void test04(){
         driver.get("https://otus.ru");
         log.info("Переход по адресу https://otus.ru");
 
@@ -105,7 +104,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void Test05(){
+    public void test05(){
         driver.get("https://otus.ru");
         log.info("Переход по адресу https://otus.ru");
 
