@@ -38,23 +38,21 @@ public class HomeWork02 {
 
     @Test
     public void test01(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+        gotoOtus();
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
         getElement(contactsLink).click();
         log.info("Переход на страницу Контакты");
 
         By address = By.xpath("//div[text()='Адрес']/following-sibling::div");
-        String addressText = getElement(address).getText();
-        Assert.assertEquals(testsData.contactsAddress(),addressText);
+        String actualAddress = getElement(address).getText();
+        Assert.assertEquals(testsData.expectedAddress(),actualAddress);
         log.info("Проверка адреса на странице Контакты");
     }
 
     @Test
     public void test02(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+        gotoOtus();
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
         getElement(contactsLink).click();
@@ -78,7 +76,7 @@ public class HomeWork02 {
         log.info("Поиск номеров по цифрам 97");
 
         List<WebElement> elements = driver.findElements(By.cssSelector("span.phone-number"));
-        Assert.assertEquals(24,elements.size());
+        Assert.assertEquals(20,elements.size());
         log.info("Проверка количества вернувшихся элементов");
 
 //      TODO разобраться почему возвращается 24 элемента вместо 20
@@ -87,8 +85,7 @@ public class HomeWork02 {
 
     @Test
     public void test04(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+        gotoOtus();
 
         By faqLink = By.cssSelector("a[href=\"/faq/\"].header2_subheader-link");
         getElement(faqLink).click();
@@ -106,8 +103,7 @@ public class HomeWork02 {
 
     @Test
     public void test05(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+        gotoOtus();
 
         By emailInput = By.xpath("//input[@class='input footer2__subscribe-input']");
         getElement(emailInput).sendKeys(testsData.testEmail());
@@ -126,5 +122,10 @@ public class HomeWork02 {
     private WebElement getElement(By locator){
         return new WebDriverWait(driver,3)
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    private void gotoOtus(){
+        driver.get(testsData.otusURL());
+        log.info("Переход по адресу " + testsData.otusURL());
     }
 }
