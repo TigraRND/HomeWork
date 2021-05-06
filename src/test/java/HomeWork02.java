@@ -38,7 +38,7 @@ public class HomeWork02 {
 
     @Test
     public void test01(){
-        gotoOtus();
+        gotoURL(testsData.otusURL());
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
         getElement(contactsLink).click();
@@ -52,7 +52,7 @@ public class HomeWork02 {
 
     @Test
     public void test02(){
-        gotoOtus();
+        gotoURL(testsData.otusURL());
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
         getElement(contactsLink).click();
@@ -67,8 +67,7 @@ public class HomeWork02 {
 
     @Test
     public void test03(){
-        driver.get("https://msk.tele2.ru/shop/number");
-        log.info("Переход по адресу https://msk.tele2.ru/shop/number");
+        gotoURL("https://msk.tele2.ru/shop/number");
 
         By searchNumber = By.cssSelector("input#searchNumber");
         getElement(searchNumber).clear();
@@ -85,7 +84,7 @@ public class HomeWork02 {
 
     @Test
     public void test04(){
-        gotoOtus();
+        gotoURL(testsData.otusURL());
 
         By faqLink = By.cssSelector("a[href=\"/faq/\"].header2_subheader-link");
         getElement(faqLink).click();
@@ -103,7 +102,7 @@ public class HomeWork02 {
 
     @Test
     public void test05(){
-        gotoOtus();
+        gotoURL(testsData.otusURL());
 
         By emailInput = By.xpath("//input[@class='input footer2__subscribe-input']");
         getElement(emailInput).sendKeys(testsData.testEmail());
@@ -124,8 +123,8 @@ public class HomeWork02 {
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    private void gotoOtus(){
-        driver.get(testsData.otusURL());
-        log.info("Переход по адресу " + testsData.otusURL());
+    private void gotoURL(String URL){
+        driver.get(URL);
+        log.info("Переход по адресу " + URL);
     }
 }
