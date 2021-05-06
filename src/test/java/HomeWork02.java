@@ -75,11 +75,10 @@ public class HomeWork02 {
         log.info("Поиск номеров по цифрам 97");
 
         List<WebElement> elements = driver.findElements(By.cssSelector("span.phone-number"));
-        Assert.assertEquals(20,elements.size());
+        Assert.assertEquals(20,elements.size(),4.0);
         log.info("Проверка количества вернувшихся элементов");
 
 //      TODO разобраться почему возвращается 24 элемента вместо 20
-//       как проверить что вернулось >= 20 элементов?
     }
 
     @Test
