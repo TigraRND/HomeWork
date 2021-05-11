@@ -46,7 +46,8 @@ public class HomeWork01 {
     @Test
     public void checkSpecialTitle(){
         String actual = driver.getTitle();
-        Assert.assertTrue(actual.contains(testsData.celebratoryTitle()));
+        String expected = testsData.celebratoryTitle();
+        Assert.assertTrue("В заголовке страницы не найдено слово " + expected,actual.contains(expected));
     }
 
 }
