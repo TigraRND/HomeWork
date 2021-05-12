@@ -11,4 +11,6 @@ public interface TestsData extends Config {
     String subscribeConfirm();
     String smartphone01();
     String smartphone02();
+    String perforator01();
+    String perforator02();
 }
