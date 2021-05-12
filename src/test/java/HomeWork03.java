@@ -18,7 +18,7 @@ import java.util.List;
 
 public class HomeWork03 {
     protected static WebDriver driver;
-    private Logger log = LogManager.getLogger(HomeWork03.class);
+    private final Logger log = LogManager.getLogger(HomeWork03.class);
     TestsData testsData = ConfigFactory.create(TestsData.class);
     SoftAssertions softAssert = new SoftAssertions();
 
@@ -50,7 +50,7 @@ public class HomeWork03 {
 
 //      Попытка бороться с капчей
         String pageTitle = driver.getTitle();
-        if(pageTitle == "Ой!"){
+        if(pageTitle.equals("Ой!")){
             By captchaCheckBox = By.xpath("//span[text()='Нажмите, чтобы продолжить']");
             driver.findElement(captchaCheckBox).click();
             log.info("Проходим капчу");
