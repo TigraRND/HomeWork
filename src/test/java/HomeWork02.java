@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class HomeWork02 {
     protected static WebDriver driver;
-    private Logger log = LogManager.getLogger(HomeWork02.class);
+    private final Logger log = LogManager.getLogger(HomeWork02.class);
     TestsData testsData = ConfigFactory.create(TestsData.class);
 
     @Before
@@ -37,7 +37,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void test01(){
+    public void checkContactAddress(){
         gotoURL(testsData.otusURL());
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
@@ -51,7 +51,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void test02(){
+    public void checkPageTitle(){
         gotoURL(testsData.otusURL());
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
@@ -66,7 +66,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void test03(){
+    public void beelineTest(){
         gotoURL("https://msk.tele2.ru/shop/number");
 
         By searchNumber = By.cssSelector("input#searchNumber");
@@ -77,12 +77,10 @@ public class HomeWork02 {
         List<WebElement> elements = driver.findElements(By.cssSelector("span.phone-number"));
         Assert.assertEquals(20,elements.size(),4.0);
         log.info("Проверка количества вернувшихся элементов");
-
-//      TODO разобраться почему возвращается 24 элемента вместо 20
     }
 
     @Test
-    public void test04(){
+    public void checkFAQ(){
         gotoURL(testsData.otusURL());
 
         By faqLink = By.cssSelector("a[href=\"/faq/\"].header2_subheader-link");
@@ -100,7 +98,7 @@ public class HomeWork02 {
     }
 
     @Test
-    public void test05(){
+    public void checkSubscribe(){
         gotoURL(testsData.otusURL());
 
         By emailInput = By.xpath("//input[@class='input footer2__subscribe-input']");
