@@ -16,9 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class HomeWork03 {
+public class HomeWork03Test {
     protected static WebDriver driver;
-    private final Logger log = LogManager.getLogger(HomeWork03.class);
+    private final Logger log = LogManager.getLogger(HomeWork03Test.class);
     TestsData testsData = ConfigFactory.create(TestsData.class);
     SoftAssertions softAssert = new SoftAssertions();
 
