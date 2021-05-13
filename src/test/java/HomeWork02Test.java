@@ -16,9 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class HomeWork02 {
+public class HomeWork02Test {
     protected static WebDriver driver;
-    private final Logger log = LogManager.getLogger(HomeWork02.class);
+    private final Logger log = LogManager.getLogger(HomeWork02Test.class);
     TestsData testsData = ConfigFactory.create(TestsData.class);
 
     @Before
