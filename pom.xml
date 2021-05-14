@@ -69,6 +69,10 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <skipTests>false</skipTests>
+                    <excludes>
+                        <exclude>**/HomeWork01Test.java</exclude>
+                        <exclude>**/HomeWork02Test.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
