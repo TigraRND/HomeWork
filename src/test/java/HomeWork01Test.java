@@ -8,45 +8,48 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class HomeWork01Test {
 
-    private Logger logger = LogManager.getLogger(HomeWork01Test.class);
+    private final Logger logger = LogManager.getLogger(HomeWork01Test.class);
     protected static WebDriver driver;
-    TestsData testsData = ConfigFactory.create(TestsData.class);
+    TestsData cfg = ConfigFactory.create(TestsData.class);
 
     @BeforeClass
     public static void start(){
         Logger log = LogManager.getLogger(HomeWork01Test.class);
         log.info("******************** Новый запуск ********************");
+    }
+
+    @Before
+    public void starUp(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        log.info("Web Driver поднят");
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
-    }
-
-    @AfterClass
-    public static void ending(){
-        if(driver != null)
-            driver.quit();
-        Logger log = LogManager.getLogger(HomeWork01Test.class);
-        log.info("Все тесты завершены");
-        log.info("Web Driver закрыт");
-    }
-
-    @After
-    public void logging (){
-        logger.info("Тест завершен");
+        logger.info("Web Driver поднят");
     }
 
     @Test
     public void checkMainTitle(){
+        gotoOTUS();
         String actual = driver.getTitle();
-        Assert.assertEquals(testsData.mainTitle(), actual);
+        Assert.assertEquals(cfg.mainTitle(), actual);
+        logger.info("Проверка Title страницы");
     }
 
     @Test
     public void checkSpecialTitle(){
+        gotoOTUS();
         String actual = driver.getTitle();
-        Assert.assertTrue(actual.contains(testsData.celebratoryTitle()));
+        Assert.assertTrue("Title страницы не содержит слова скидки",actual.contains(cfg.celebratoryTitle()));
+        logger.info("Проверка Title страницы на наличие слова Скидки");
     }
 
+    @After
+    public void logging (){
+        if(driver != null)
+            driver.quit();
+        logger.info("Web Driver закрыт");
+    }
+
+    private void gotoOTUS(){
+        driver.get("https://otus.ru");
+        logger.info("Переход по адресу https://otus.ru");
+    }
 }
