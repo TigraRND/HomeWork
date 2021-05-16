@@ -4,4 +4,10 @@ import org.aeonbits.owner.Config;
 public interface TestsData extends Config {
     String mainTitle();
     String celebratoryTitle();
+    String contactsTitle();
+    String expectedAddress();
+    String answerText();
+    String testEmail();
+    String subscribeConfirm();
+    String otusURL();
 }
