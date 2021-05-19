@@ -5,10 +5,11 @@ public interface TestsData extends Config {
     String mainTitle();
     String celebratoryTitle();
     String contactsTitle();
-    String contactsAddress();
+    String expectedAddress();
     String answerText();
     String testEmail();
     String subscribeConfirm();
     String smartphone01();
     String smartphone02();
+    String otusURL();
 }

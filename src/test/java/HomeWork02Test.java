@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 public class HomeWork02Test {
     protected static WebDriver driver;
-    private Logger log = LogManager.getLogger(HomeWork02Test.class);
+    private final Logger log = LogManager.getLogger(HomeWork02Test.class);
     TestsData testsData = ConfigFactory.create(TestsData.class);
 
     @Before
@@ -36,24 +36,22 @@ public class HomeWork02Test {
     }
 
     @Test
-    public void test01(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+    public void checkContactAddress(){
+        gotoURL(testsData.otusURL());
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
         getElement(contactsLink).click();
         log.info("Переход на страницу Контакты");
 
         By address = By.xpath("//div[text()='Адрес']/following-sibling::div");
-        String addressText = getElement(address).getText();
-        Assert.assertEquals(testsData.contactsAddress(),addressText);
+        String actualAddress = getElement(address).getText();
+        Assert.assertEquals(testsData.expectedAddress(),actualAddress);
         log.info("Проверка адреса на странице Контакты");
     }
 
     @Test
-    public void test02(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+    public void checkPageTitle(){
+        gotoURL(testsData.otusURL());
 
         By contactsLink = By.cssSelector("a[href=\"/contacts/\"].header2_subheader-link");
         getElement(contactsLink).click();
@@ -67,9 +65,8 @@ public class HomeWork02Test {
     }
 
     @Test
-    public void test03(){
-        driver.get("https://msk.tele2.ru/shop/number");
-        log.info("Переход по адресу https://msk.tele2.ru/shop/number");
+    public void beelineTest(){
+        gotoURL("https://msk.tele2.ru/shop/number");
 
         By searchNumber = By.cssSelector("input#searchNumber");
         getElement(searchNumber).clear();
@@ -77,17 +74,13 @@ public class HomeWork02Test {
         log.info("Поиск номеров по цифрам 97");
 
         List<WebElement> elements = driver.findElements(By.cssSelector("span.phone-number"));
-        Assert.assertEquals(24,elements.size());
+        Assert.assertEquals(20,elements.size(),4.0);
         log.info("Проверка количества вернувшихся элементов");
-
-//      TODO разобраться почему возвращается 24 элемента вместо 20
-//       как проверить что вернулось >= 20 элементов?
     }
 
     @Test
-    public void test04(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+    public void checkFAQ(){
+        gotoURL(testsData.otusURL());
 
         By faqLink = By.cssSelector("a[href=\"/faq/\"].header2_subheader-link");
         getElement(faqLink).click();
@@ -104,9 +97,8 @@ public class HomeWork02Test {
     }
 
     @Test
-    public void test05(){
-        driver.get("https://otus.ru");
-        log.info("Переход по адресу https://otus.ru");
+    public void checkSubscribe(){
+        gotoURL(testsData.otusURL());
 
         By emailInput = By.xpath("//input[@class='input footer2__subscribe-input']");
         getElement(emailInput).sendKeys(testsData.testEmail());
@@ -125,5 +117,10 @@ public class HomeWork02Test {
     private WebElement getElement(By locator){
         return new WebDriverWait(driver,3)
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    private void gotoURL(String URL){
+        driver.get(URL);
+        log.info("Переход по адресу " + URL);
     }
 }
