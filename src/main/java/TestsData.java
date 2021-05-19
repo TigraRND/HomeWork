@@ -9,5 +9,7 @@ public interface TestsData extends Config {
     String answerText();
     String testEmail();
     String subscribeConfirm();
+    String smartphone01();
+    String smartphone02();
     String otusURL();
 }

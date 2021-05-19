@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class HomeWork01Test {
-
     private final Logger logger = LogManager.getLogger(HomeWork01Test.class);
     protected static WebDriver driver;
     TestsData cfg = ConfigFactory.create(TestsData.class);
