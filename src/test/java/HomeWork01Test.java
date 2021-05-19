@@ -37,7 +37,7 @@ public class HomeWork01Test {
     public void checkSpecialTitle(){
         gotoOTUS();
         String actual = driver.getTitle();
-        Assert.assertTrue("Title страницы не содержит слова скидки",actual.contains(cfg.celebratoryTitle()));
+        Assert.assertTrue("Title страницы не содержит слова Скидки",actual.contains(cfg.celebratoryTitle()));
         logger.info("Проверка Title страницы на наличие слова Скидки");
     }
 
