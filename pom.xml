@@ -74,6 +74,10 @@
                         <exclude>**/HomeWork01Test.java</exclude>
                         <exclude>**/HomeWork02Test.java</exclude>
                     </excludes>
+                    <includes>
+                        <include>HomeWork03Yandex.java</include>
+                        <include>HomeWork03Volt.java</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>
