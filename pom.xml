@@ -16,6 +16,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -72,7 +73,6 @@
                     <excludes>
                         <exclude>**/HomeWork01Test.java</exclude>
                         <exclude>**/HomeWork02Test.java</exclude>
-                        <exclude>**/HomeWork03Test.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>

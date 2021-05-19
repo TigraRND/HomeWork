@@ -5,7 +5,7 @@ public interface TestsData extends Config {
     String mainTitle();
     String celebratoryTitle();
     String contactsTitle();
-    String contactsAddress();
+    String expectedAddress();
     String answerText();
     String testEmail();
     String subscribeConfirm();
@@ -13,4 +13,5 @@ public interface TestsData extends Config {
     String smartphone02();
     String perforator01();
     String perforator02();
+    String otusURL();
 }
