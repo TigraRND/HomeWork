@@ -30,6 +30,7 @@ public class HomeWork01Test {
         String actual = driver.getTitle();
         Assert.assertEquals(cfg.mainTitle(), actual);
         logger.info("Проверка Title страницы");
+
     }
 
     @Test
