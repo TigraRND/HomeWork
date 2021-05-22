@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class BasePage {
+public abstract class BasePage {
     protected static WebDriver driver;
     private final Logger logger = LogManager.getLogger(BasePage.class);
     String url = "https://otus.ru";
@@ -22,10 +22,9 @@ public class BasePage {
         BasePage.driver = driver;
     }
 
-    public BasePage goToPage(){
+    public void goToSite(){
         driver.get(url);
         logger.info("Открыта страница " + url);
-        return this;
     }
 
     public BasePage authorization(String login, String password){

@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import pages.BasePage;
 import pages.PersonalDataPage;
 
 import java.util.concurrent.TimeUnit;
@@ -41,16 +40,14 @@ public class HomeWork04Test {
 
     @Test
     public void sampleTest() {
-        //Объявление объектов страниц
-        BasePage basePage = new BasePage(driver);
-        PersonalDataPage personalDataPage;
+        //Создание объекта тестируемой страницы
+        PersonalDataPage personalDataPage = new PersonalDataPage(driver);
 
         //Начало теста
-        basePage
-                .goToPage()
-                .authorization(cfg.otusTestLogin(), cfg.otusTestPassword());
+        personalDataPage.goToSite();
+        personalDataPage.authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
+                .enterLK();
 //                .authorization("Tigra","12345");
-        personalDataPage = basePage.enterLK();
 
         //Заполнение полей
         logger.info("Начало ввода тестовых данных");
@@ -70,11 +67,10 @@ public class HomeWork04Test {
         //Перезапуск драйвера
         shutDown();
         startUp();
-        basePage = new BasePage(driver);
-        basePage
-                .goToPage()
-                .authorization(cfg.otusTestLogin(), cfg.otusTestPassword());
-        personalDataPage = basePage.enterLK();
+        personalDataPage = new PersonalDataPage(driver);
+        personalDataPage.goToSite();
+        personalDataPage.authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
+                .enterLK();
 
         //Проверка
         logger.info("Начало проверки значений");

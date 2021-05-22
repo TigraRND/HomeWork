@@ -119,7 +119,6 @@ public class PersonalDataPage extends BasePage {
             new WebDriverWait(driver, 10).until(ExpectedConditions.urlToBe("https://otus.ru/lk/biography/skills/"));
         } else{
             driver.findElement(saveAndStay).click();
-            //TODO узнать явное ожидание обновления страницы
         }
     }
 
