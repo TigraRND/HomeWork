@@ -10,13 +10,13 @@ import org.openqa.selenium.interactions.Actions;
 public abstract class BasePage {
     protected static WebDriver driver;
     private final Logger logger = LogManager.getLogger(BasePage.class);
-    String url = "https://otus.ru";
+    private String url = "https://otus.ru";
     private boolean auth = false;
-    By enterAndRegBtn = By.cssSelector("button.header2__auth");
-    By loginInput = By.cssSelector("div.new-input-line_slim:nth-child(3) > input:nth-child(1)");
-    By passwordInput = By.cssSelector(".js-psw-input");
-    By submitBtn = By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)");
-    By avatar = By.cssSelector(".ic-blog-default-avatar");
+    private By enterAndRegBtn = By.cssSelector("button.header2__auth");
+    private By loginInput = By.cssSelector("div.new-input-line_slim:nth-child(3) > input:nth-child(1)");
+    private By passwordInput = By.cssSelector(".js-psw-input");
+    private By submitBtn = By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)");
+    private By avatar = By.cssSelector(".ic-blog-default-avatar");
 
     public BasePage(WebDriver driver){
         BasePage.driver = driver;
