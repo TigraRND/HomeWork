@@ -43,11 +43,12 @@ public class HomeWork04Test {
         //Создание объекта тестируемой страницы
         PersonalDataPage personalDataPage = new PersonalDataPage(driver);
 
-        //Начало теста
-        personalDataPage.goToSite();
-        personalDataPage.authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
+        //Переход на сайт, авторизация, переход в личный кабинет
+        personalDataPage.goToSite()
+                .authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
                 .enterLK();
 //                .authorization("Tigra","12345");
+//        logger.debug("Проверка повторной авторизации");
 
         //Заполнение полей
         logger.info("Начало ввода тестовых данных");
@@ -67,12 +68,16 @@ public class HomeWork04Test {
         //Перезапуск драйвера
         shutDown();
         startUp();
+
+        //Создание нового объекта тестируемой страницы
         personalDataPage = new PersonalDataPage(driver);
-        personalDataPage.goToSite();
-        personalDataPage.authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
+
+        //Переход на сайт, авторизация, переход в личный кабинет
+        personalDataPage.goToSite()
+                .authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
                 .enterLK();
 
-        //Проверка
+        //Проверка данных
         logger.info("Начало проверки значений");
         softAssert.assertThat(personalDataPage.getFirstNameRus()).isEqualTo(cfg.firstNameRus());
         softAssert.assertThat(personalDataPage.getFirstNameEng()).isEqualTo(cfg.firstNameEng());
@@ -85,7 +90,5 @@ public class HomeWork04Test {
         softAssert.assertThat(personalDataPage.getEnglishSkill()).isEqualTo(cfg.englishSkill());
         logger.info("Окончание проверки значений");
         softAssert.assertAll();
-
-//        driver.findElement(By.xpath("//span[text()='Способ связи']")).click();
     }
 }

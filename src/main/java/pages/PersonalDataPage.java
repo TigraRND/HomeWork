@@ -10,19 +10,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PersonalDataPage extends BasePage {
     private final Logger logger = LogManager.getLogger(PersonalDataPage.class);
-    private String url = "https://otus.ru/lk/biography/personal/";
-    private By firstNameRus = By.id("id_fname");
-    private By lastNameRus = By.id("id_lname");
-    private By firstNameEng = By.id("id_fname_latin");
-    private By lastNameEng = By.id("id_lname_latin");
-    private By blogName = By.id("id_blog_name");
-    private By birthday = By.cssSelector(".input-icon > input:nth-child(1)");
-    private By countryListBox = By.cssSelector(".js-lk-cv-dependent-master div");
-    private By cityListBox = By.cssSelector(".js-lk-cv-dependent-slave-city > label:nth-child(1) > div:nth-child(2)");
-    private By englishSkill = By.cssSelector("div.container__col_12:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > label:nth-child(1) > div:nth-child(2)");
-    private By contactType = By.cssSelector("button[title='VK']");
-    private By saveAndContinue = By.xpath("//button[@title='Сохранить и продолжить']");
-    private By saveAndStay = By.xpath("//button[@title='Сохранить и заполнить позже']");
+    private final String url = "https://otus.ru/lk/biography/personal/";
+    private final By firstNameRus = By.id("id_fname");
+    private final By lastNameRus = By.id("id_lname");
+    private final By firstNameEng = By.id("id_fname_latin");
+    private final By lastNameEng = By.id("id_lname_latin");
+    private final By blogName = By.id("id_blog_name");
+    private final By birthday = By.cssSelector(".input-icon > input:nth-child(1)");
+    private final By countryListBox = By.cssSelector(".js-lk-cv-dependent-master div");
+    private final By cityListBox = By.cssSelector(".js-lk-cv-dependent-slave-city > label:nth-child(1) > div:nth-child(2)");
+    private final By englishSkill = By.cssSelector("div.container__col_12:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > label:nth-child(1) > div:nth-child(2)");
+    private final By contactType = By.cssSelector("button[title='VK']");
+    private final By saveAndContinue = By.xpath("//button[@title='Сохранить и продолжить']");
+    private final By saveAndStay = By.xpath("//button[@title='Сохранить и заполнить позже']");
 
     public PersonalDataPage(WebDriver driver){
         super(driver);

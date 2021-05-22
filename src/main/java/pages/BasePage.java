@@ -10,21 +10,22 @@ import org.openqa.selenium.interactions.Actions;
 public abstract class BasePage {
     protected static WebDriver driver;
     private final Logger logger = LogManager.getLogger(BasePage.class);
-    private String url = "https://otus.ru";
+    private final String url = "https://otus.ru";
     private boolean auth = false;
-    private By enterAndRegBtn = By.cssSelector("button.header2__auth");
-    private By loginInput = By.cssSelector("div.new-input-line_slim:nth-child(3) > input:nth-child(1)");
-    private By passwordInput = By.cssSelector(".js-psw-input");
-    private By submitBtn = By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)");
-    private By avatar = By.cssSelector(".ic-blog-default-avatar");
+    private final By enterAndRegBtn = By.cssSelector("button.header2__auth");
+    private final By loginInput = By.cssSelector("div.new-input-line_slim:nth-child(3) > input:nth-child(1)");
+    private final By passwordInput = By.cssSelector(".js-psw-input");
+    private final By submitBtn = By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)");
+    private final By avatar = By.cssSelector(".ic-blog-default-avatar");
 
     public BasePage(WebDriver driver){
         BasePage.driver = driver;
     }
 
-    public void goToSite(){
+    public BasePage goToSite(){
         driver.get(url);
         logger.info("Открыта страница " + url);
+        return this;
     }
 
     public BasePage authorization(String login, String password){
