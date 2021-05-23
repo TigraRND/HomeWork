@@ -1,4 +1,3 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pages.PersonalDataPage;
 
 import java.util.concurrent.TimeUnit;
@@ -16,17 +13,13 @@ import java.util.concurrent.TimeUnit;
 public class HomeWork04Test {
     protected static WebDriver driver;
     private final Logger logger = LogManager.getLogger(HomeWork04Test.class);
-    TestsData cfg = ConfigFactory.create(TestsData.class);
-    SoftAssertions softAssert = new SoftAssertions();
+    private final TestsData cfg = ConfigFactory.create(TestsData.class);
+    private final SoftAssertions softAssert = new SoftAssertions();
 
     @Before
     public void startUp() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("headless");
-        driver = new ChromeDriver(options);
-        logger.info("Web Driver поднят");
-        driver.manage().window().maximize();
+        driver = WDFactory.getDriver(WDType.CHROME);
+//        driver = WDFactory.getDriver(WDType.CHROME,"--INCOGNITO --window-size=1600,900");
 //        Настрока не явного ожидания с таймаутом 3 секунды
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
@@ -35,7 +28,7 @@ public class HomeWork04Test {
     public void shutDown() {
         if (driver != null)
             driver.quit();
-        logger.info("Web Driver закрыт");
+        logger.info("WebDriver закрыт");
     }
 
     @Test
@@ -46,8 +39,8 @@ public class HomeWork04Test {
         //Переход на сайт, авторизация, переход в личный кабинет
         personalDataPage.goToSite()
                 .authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
+//                .authorization("Tigra","12345")
                 .enterLK();
-//                .authorization("Tigra","12345");
 //        logger.debug("Проверка повторной авторизации");
 
         //Заполнение полей
