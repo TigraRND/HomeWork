@@ -32,4 +32,6 @@ public interface TestsData extends Config {
     String country();
     String city();
     String englishSkill();
+    String vk();
+    String Facebook();
 }

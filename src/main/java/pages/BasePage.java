@@ -10,7 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 public abstract class BasePage {
     protected static WebDriver driver;
     private final Logger logger = LogManager.getLogger(BasePage.class);
-    private final String url = "https://otus.ru";
     private boolean auth = false;
     private final By enterAndRegBtn = By.cssSelector("button.header2__auth");
     private final By loginInput = By.cssSelector("div.new-input-line_slim:nth-child(3) > input:nth-child(1)");
@@ -23,8 +22,8 @@ public abstract class BasePage {
     }
 
     public BasePage goToSite(){
-        driver.get(url);
-        logger.info("Открыта страница " + url);
+        driver.get("https://otus.ru");
+        logger.info("Открыта страница https://otus.ru");
         return this;
     }
 

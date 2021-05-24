@@ -8,9 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class PersonalDataPage extends BasePage {
     private final Logger logger = LogManager.getLogger(PersonalDataPage.class);
-    private final String url = "https://otus.ru/lk/biography/personal/";
     private final By firstNameRus = By.id("id_fname");
     private final By lastNameRus = By.id("id_lname");
     private final By firstNameEng = By.id("id_fname_latin");
@@ -20,7 +21,9 @@ public class PersonalDataPage extends BasePage {
     private final By countryListBox = By.cssSelector(".js-lk-cv-dependent-master div");
     private final By cityListBox = By.cssSelector(".js-lk-cv-dependent-slave-city > label:nth-child(1) > div:nth-child(2)");
     private final By englishSkill = By.cssSelector("div.container__col_12:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > label:nth-child(1) > div:nth-child(2)");
-    private final By contactType = By.cssSelector("button[title='VK']");
+    private final By emptyTypeOfContact = By.xpath("//span[text()='Способ связи']");
+    private final By addButton = By.xpath("//button[text()='Добавить']");
+    private final By deleteButtons = By.xpath("(//button[text()='Удалить'])[position() mod 2 = 0]");
     private final By saveAndContinue = By.xpath("//button[@title='Сохранить и продолжить']");
     private final By saveAndStay = By.xpath("//button[@title='Сохранить и заполнить позже']");
 
@@ -29,7 +32,7 @@ public class PersonalDataPage extends BasePage {
     }
 
     public PersonalDataPage goToPage(){
-        driver.get(url);
+        driver.get("https://otus.ru/lk/biography/personal/");
         logger.info("Переход в личный кабинет, раздел 'О себе'");
         return this;
     }
@@ -122,11 +125,30 @@ public class PersonalDataPage extends BasePage {
         }
     }
 
-    public void setContactType(String type){
-        //FIXME метод не работает
-//        driver.findElement(By.cssSelector("button[title='VK']")).click();
-        driver.findElement(By.cssSelector("button[title='" + type + "']")).click();
-        driver.findElement(By.cssSelector("button[title='" + type + "']")).click();
+    public PersonalDataPage addContact(String type, String value){
+        String typeOfContact = "(//button[@title='%s'])[last()]";
+        String contactInput = "//div[text()='%s']/ancestor::*[3]/child::input";
+        driver.findElement(emptyTypeOfContact).click();
+        driver.findElement(By.xpath(String.format(typeOfContact, type))).click();
+        driver.findElement(By.xpath(String.format(contactInput,type))).sendKeys(value);
+        driver.findElement(addButton).click();
+        return this;
+    }
+
+    public PersonalDataPage cleanContacts(){
+        List<WebElement> deletes = driver.findElements(deleteButtons);
+        if(deletes.size() > 1){
+            for (WebElement button:deletes) {
+                button.click();
+            }
+            driver.findElement(addButton).click();
+        }
+        return this;
+    }
+
+    public String getContact(String type){
+        String locator = "//div[contains(text(),'%s')]/ancestor::*[3]/child::input";
+        return getFieldValue(By.xpath(String.format(locator,type)));
     }
 
     //Заполнение полей формы
@@ -151,7 +173,7 @@ public class PersonalDataPage extends BasePage {
         if(!listBox.getText().contains(value)) {
             listBox.click();
             driver
-                    .findElement(By.xpath("//*[contains(text(),'" + value + "')]"))
+                    .findElement(By.xpath(String.format("//*[contains(text(),'%s')]",value)))
                     .click();
         }
     }

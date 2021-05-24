@@ -1,12 +1,12 @@
 import java.util.Properties;
 
-public class PropParser {
+public class Argumentator {
     private Properties properties = null;
     private String login = null;
     private String password = null;
     private String browser = null;
 
-    public PropParser(){
+    public Argumentator(){
         properties = System.getProperties();
         login = properties.getProperty("login");
         password = properties.getProperty("password");
