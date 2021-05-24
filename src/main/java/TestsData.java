@@ -23,8 +23,6 @@ public interface TestsData extends Config {
     String perforator02();
 
     //HomeWork04
-    String otusTestLogin();
-    String otusTestPassword();
     String firstNameRus();
     String lastNameRus();
     String firstNameEng();

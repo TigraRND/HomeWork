@@ -14,11 +14,13 @@ public class HomeWork04Test {
     protected static WebDriver driver;
     private final Logger logger = LogManager.getLogger(HomeWork04Test.class);
     private final TestsData cfg = ConfigFactory.create(TestsData.class);
+    private final PropParser arg = new PropParser();
     private final SoftAssertions softAssert = new SoftAssertions();
 
     @Before
     public void startUp() {
         driver = WDFactory.getDriver(WDType.CHROME);
+//        TODO добавить конструктор принимающий строку тип браузера
 //        driver = WDFactory.getDriver(WDType.CHROME,"--INCOGNITO --window-size=1600,900");
 //        Настрока не явного ожидания с таймаутом 3 секунды
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -32,13 +34,13 @@ public class HomeWork04Test {
     }
 
     @Test
-    public void sampleTest() {
+    public void fillAndConfirm() {
         //Создание объекта тестируемой страницы
         PersonalDataPage personalDataPage = new PersonalDataPage(driver);
 
         //Переход на сайт, авторизация, переход в личный кабинет
         personalDataPage.goToSite()
-                .authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
+                .authorization(arg.getLogin(), arg.getPassword())
 //                .authorization("Tigra","12345")
                 .enterLK();
 //        logger.debug("Проверка повторной авторизации");
@@ -67,7 +69,7 @@ public class HomeWork04Test {
 
         //Переход на сайт, авторизация, переход в личный кабинет
         personalDataPage.goToSite()
-                .authorization(cfg.otusTestLogin(), cfg.otusTestPassword())
+                .authorization(arg.getLogin(), arg.getPassword())
                 .enterLK();
 
         //Проверка данных
