@@ -7,9 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public abstract class BasePage {
+public abstract class CommonElements {
     protected static WebDriver driver;
-    private final Logger logger = LogManager.getLogger(BasePage.class);
+    private final Logger logger = LogManager.getLogger(CommonElements.class);
     private boolean auth = false;
     private final By enterAndRegBtn = By.cssSelector("button.header2__auth");
     private final By loginInput = By.cssSelector("div.new-input-line_slim:nth-child(3) > input:nth-child(1)");
@@ -17,17 +17,17 @@ public abstract class BasePage {
     private final By submitBtn = By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)");
     private final By avatar = By.cssSelector(".ic-blog-default-avatar");
 
-    public BasePage(WebDriver driver){
-        BasePage.driver = driver;
+    public CommonElements(WebDriver driver){
+        CommonElements.driver = driver;
     }
 
-    public BasePage goToSite(){
+    public CommonElements goToSite(){
         driver.get("https://otus.ru");
         logger.info("Открыта страница https://otus.ru");
         return this;
     }
 
-    public BasePage authorization(String login, String password){
+    public CommonElements authorization(String login, String password){
         //Проаерка что авторизация еще не пройдена
         if (!auth){
             driver.findElement(enterAndRegBtn).click();

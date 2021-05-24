@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class PersonalDataPage extends BasePage {
+public class PersonalDataPage extends CommonElements {
     private final Logger logger = LogManager.getLogger(PersonalDataPage.class);
     private final By firstNameRus = By.id("id_fname");
     private final By lastNameRus = By.id("id_lname");

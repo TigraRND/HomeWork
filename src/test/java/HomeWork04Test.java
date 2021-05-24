@@ -2,6 +2,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class HomeWork04Test {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
-//    @After
+    @After
     public void shutDown() {
         if (driver != null)
             driver.quit();
@@ -87,19 +88,5 @@ public class HomeWork04Test {
         softAssert.assertThat(personalDataPage.getContact("Facebook")).isEqualTo(cfg.Facebook());
         logger.info("Окончание проверки значений");
         softAssert.assertAll();
-    }
-
-//    @Test
-    public void contactTest(){
-        //Создание объекта тестируемой страницы
-        PersonalDataPage personalDataPage = new PersonalDataPage(driver);
-
-        //Переход на сайт, авторизация, переход в личный кабинет
-        personalDataPage.goToSite()
-                .authorization(arg.getLogin(), arg.getPassword())
-                .enterLK();
-
-        logger.debug(personalDataPage.getContact("VK"));
-        logger.debug(personalDataPage.getContact("Facebook"));
     }
 }
