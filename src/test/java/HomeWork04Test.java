@@ -19,9 +19,7 @@ public class HomeWork04Test {
 
     @Before
     public void startUp() {
-        driver = WDFactory.getDriver(WDType.CHROME);
-//        TODO добавить конструктор принимающий строку тип браузера
-//        driver = WDFactory.getDriver(WDType.CHROME,"--INCOGNITO --window-size=1600,900");
+        driver = WDFactory.getDriver(arg.getBrowser());
 //        Настрока не явного ожидания с таймаутом 3 секунды
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }

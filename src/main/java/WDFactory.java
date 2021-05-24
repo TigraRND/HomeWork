@@ -74,4 +74,14 @@ public class WDFactory {
     public static WebDriver getDriver(WDType type){
         return getDriver(type,"start-maximized");
     }
+
+    public static WebDriver getDriver(String type){
+        if(type == null)
+            return getDriver(WDType.CHROME);
+        try{
+            return getDriver(WDType.valueOf(type));
+        }catch(IllegalArgumentException ex){
+            return getDriver(WDType.CHROME);
+        }
+    }
 }
