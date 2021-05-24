@@ -1,27 +1,22 @@
 import java.util.Properties;
 
 public class Argumentator {
-    private Properties properties = null;
-    private String login = null;
-    private String password = null;
-    private String browser = null;
+    private final Properties properties;
 
     public Argumentator(){
         properties = System.getProperties();
-        login = properties.getProperty("login");
-        password = properties.getProperty("password");
-        browser = properties.getProperty("browser");
     }
 
     public String getLogin() {
-        return login;
+        return properties.getProperty("login");
     }
 
     public String getPassword() {
-        return password;
+        return properties.getProperty("password");
     }
 
     public String getBrowser() {
+        String browser = properties.getProperty("browser");
         if (browser != null)
             browser = browser.toUpperCase();
         return browser;
