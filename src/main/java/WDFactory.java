@@ -61,7 +61,7 @@ public class WDFactory {
                 operaOptions.addArguments(arguments);
                 return new OperaDriver(operaOptions);
             case IE:
-                WebDriverManager.iedriver();
+                WebDriverManager.iedriver().setup();
                 logger.info("WebDriver " + type +" поднят");
                 InternetExplorerOptions ieOptions = new InternetExplorerOptions();
                 ieOptions.addCommandSwitches(arguments);
