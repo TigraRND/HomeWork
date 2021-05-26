@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public abstract class CommonElements {
     protected static WebDriver driver;
-    private final Logger logger = LogManager.getLogger(CommonElements.class);
+    final Logger logger = LogManager.getLogger(CommonElements.class);
     private boolean auth = false;
     private final By enterAndRegBtn = By.cssSelector("button.header2__auth");
     private final By loginInput = By.cssSelector("div.new-input-line_slim:nth-child(3) > input:nth-child(1)");
