@@ -72,7 +72,7 @@ public class WDFactory {
     }
 
     public static WebDriver getDriver(WDType type){
-        return getDriver(type,"start-maximized");
+        return getDriver(type);
     }
 
     public static WebDriver getDriver(String type){
