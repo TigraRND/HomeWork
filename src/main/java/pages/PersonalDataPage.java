@@ -113,7 +113,7 @@ public class PersonalDataPage extends CommonElements {
 
     public String getEnglishSkill(){return getFieldValue(englishSkill);}
 
-    public void saveForm(Boolean redirect){
+    public void saveForm(boolean redirect){
         if(redirect){
             driver.findElement(saveAndContinue).click();
             new WebDriverWait(driver, 10).until(ExpectedConditions.urlToBe("https://otus.ru/lk/biography/skills/"));

@@ -72,7 +72,27 @@ public class WDFactory {
     }
 
     public static WebDriver getDriver(WDType type){
-        return getDriver(type);
+        Logger logger = LogManager.getLogger(WDFactory.class);
+        switch (type){
+            case CHROME:
+                WebDriverManager.chromedriver().setup();
+                logger.info("WebDriver " + type +" поднят");
+                return new ChromeDriver();
+            case FIREFOX:
+                WebDriverManager.firefoxdriver().setup();
+                logger.info("WebDriver " + type +" поднят");
+                return new FirefoxDriver();
+            case OPERA:
+                WebDriverManager.operadriver().setup();
+                logger.info("WebDriver " + type +" поднят");
+                return new OperaDriver();
+            case IE:
+                WebDriverManager.iedriver();
+                logger.info("WebDriver " + type +" поднят");
+                return new InternetExplorerDriver();
+        }
+        logger.error("Ошибка при создании WebDriver. Не указан тип.");
+        return null;
     }
 
     public static WebDriver getDriver(String type){

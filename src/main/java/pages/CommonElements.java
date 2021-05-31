@@ -21,12 +21,6 @@ public abstract class CommonElements {
         CommonElements.driver = driver;
     }
 
-    public CommonElements goToSite(){
-        driver.get("https://otus.ru");
-        logger.info("Открыта страница https://otus.ru");
-        return this;
-    }
-
     public CommonElements authorization(String login, String password){
         //Проаерка что авторизация еще не пройдена
         if (!auth){

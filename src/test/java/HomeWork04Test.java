@@ -20,6 +20,7 @@ public class HomeWork04Test {
     @Before
     public void startUp() {
         driver = WDFactory.getDriver(arg.getBrowser());
+        driver.manage().window().maximize();
 //        Настрока не явного ожидания с таймаутом 3 секунды
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
@@ -33,11 +34,14 @@ public class HomeWork04Test {
 
     @Test
     public void fillAndCheck() {
+        driver.get("https://otus.ru");
+        logger.info("Открыта страница https://otus.ru");
+
         //Создание объекта тестируемой страницы
         PersonalDataPage personalDataPage = new PersonalDataPage(driver);
 
-        //Переход на сайт, авторизация, переход в личный кабинет
-        personalDataPage.goToSite()
+        //Авторизация, переход в личный кабинет
+        personalDataPage
                 .authorization(arg.getLogin(), arg.getPassword())
 //                .authorization("Tigra","12345")
                 .enterLK();
@@ -68,8 +72,11 @@ public class HomeWork04Test {
         //Создание нового объекта тестируемой страницы
         personalDataPage = new PersonalDataPage(driver);
 
-        //Переход на сайт, авторизация, переход в личный кабинет
-        personalDataPage.goToSite()
+        driver.get("https://otus.ru");
+        logger.info("Открыта страница https://otus.ru");
+
+        //Авторизация, переход в личный кабинет
+        personalDataPage
                 .authorization(arg.getLogin(), arg.getPassword())
                 .enterLK();
 
