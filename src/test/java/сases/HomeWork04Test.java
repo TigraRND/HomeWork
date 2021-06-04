@@ -1,3 +1,5 @@
+package сases;
+
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,6 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.PersonalDataPage;
+import utils.Argumentator;
+import utils.TestsData;
+import utils.WDFactory;
 
 import java.util.concurrent.TimeUnit;
 

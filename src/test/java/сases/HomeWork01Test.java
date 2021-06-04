@@ -1,3 +1,5 @@
+package сases;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
@@ -5,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utils.TestsData;
 
 public class HomeWork01Test {
     private final Logger logger = LogManager.getLogger(HomeWork01Test.class);
