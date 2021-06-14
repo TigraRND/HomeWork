@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.otus</groupId>
-    <artifactId>HomeWork01Test</artifactId>
+    <artifactId>HomeWork</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -71,12 +71,13 @@
                 <configuration>
                     <skipTests>false</skipTests>
                     <excludes>
-                        <exclude>**/HomeWork01Test.java</exclude>
-                        <exclude>**/HomeWork02Test.java</exclude>
+                        <exclude>**/сases.HomeWork01Test.java</exclude>
+                        <exclude>**/сases.HomeWork02Test.java</exclude>
+                        <exclude>**/сases.HomeWork03Yandex.java</exclude>
+                        <exclude>**/сases.HomeWork03Volt.java</exclude>
                     </excludes>
                     <includes>
-                        <include>HomeWork03Yandex.java</include>
-                        <include>HomeWork03Volt.java</include>
+                        <include>сases.HomeWork04Test.java</include>
                     </includes>
                 </configuration>
             </plugin>
