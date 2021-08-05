@@ -1,5 +1,6 @@
 package сases;
 
+import io.qameta.allure.Story;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +39,7 @@ public class HomeWork04Test {
     }
 
     @Test
+    @Story("Сохранение информации о пользователе в личном кабинете")
     public void fillAndCheck() {
         driver.get("https://otus.ru");
         logger.info("Открыта страница https://otus.ru");
@@ -62,11 +64,11 @@ public class HomeWork04Test {
                 .setBlogName(cfg.blogName())
                 .setBirthday(cfg.birthday())
                 .setCountry(cfg.country())
-                .setCity(cfg.city())
-                .setEnglishSkill(cfg.englishSkill())
-                .cleanContacts()
-                .addContact("VK", cfg.vk())
-                .addContact("Facebook",cfg.Facebook())
+//                .setCity(cfg.city())
+//                .setEnglishSkill(cfg.englishSkill())
+//                .cleanContacts()
+//                .addContact("VK", cfg.vk())
+//                .addContact("Facebook",cfg.Facebook())
                 .saveForm(false);
         logger.info("Окончание ввода тестовых данных");
 
@@ -94,10 +96,10 @@ public class HomeWork04Test {
         softAssert.assertThat(personalDataPage.getBlogName()).isEqualTo(cfg.blogName());
         softAssert.assertThat(personalDataPage.getBirthday()).isEqualTo(cfg.birthday());
         softAssert.assertThat(personalDataPage.getCountry()).isEqualTo(cfg.country());
-        softAssert.assertThat(personalDataPage.getCity()).isEqualTo(cfg.city());
-        softAssert.assertThat(personalDataPage.getEnglishSkill()).isEqualTo(cfg.englishSkill());
-        softAssert.assertThat(personalDataPage.getContact("VK")).isEqualTo(cfg.vk());
-        softAssert.assertThat(personalDataPage.getContact("Facebook")).isEqualTo(cfg.Facebook());
+//        softAssert.assertThat(personalDataPage.getCity()).isEqualTo(cfg.city());
+//        softAssert.assertThat(personalDataPage.getEnglishSkill()).isEqualTo(cfg.englishSkill());
+//        softAssert.assertThat(personalDataPage.getContact("VK")).isEqualTo(cfg.vk());
+//        softAssert.assertThat(personalDataPage.getContact("Facebook")).isEqualTo(cfg.Facebook());
         logger.info("Окончание проверки значений");
         softAssert.assertAll();
     }

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -21,6 +22,7 @@ public abstract class CommonElements {
         CommonElements.driver = driver;
     }
 
+    @Step("Авторизация пользователя")
     public CommonElements authorization(String login, String password){
         //Проаерка что авторизация еще не пройдена
         if (!auth){

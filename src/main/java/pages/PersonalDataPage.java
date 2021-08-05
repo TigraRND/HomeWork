@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,91 +29,111 @@ public class PersonalDataPage extends CommonElements {
         super(driver);
     }
 
+    @Step("Переход на страницу персональных данных пользователя")
     public PersonalDataPage goToPage(){
         driver.get("https://otus.ru/lk/biography/personal/");
         logger.info("Переход в личный кабинет, раздел 'О себе'");
         return this;
     }
 
+    @Step("Ввод имени пользователя")
     public PersonalDataPage setFirstNameRus(String name){
         fillField(firstNameRus,name);
         return this;
     }
 
+    @Step("Ввод имени пользователя латиницей")
     public PersonalDataPage setFirstNameEng(String name){
         fillField(firstNameEng,name);
         return this;
     }
 
+    @Step("Ввод фамилии пользователя")
     public PersonalDataPage setLastNameRus(String name){
         fillField(lastNameRus,name);
         return this;
     }
 
+    @Step("Ввод фамилии пользователя латиницей")
     public PersonalDataPage setLastNameEng(String name){
         fillField(lastNameEng,name);
         return this;
     }
 
+    @Step("Ввод имени в блоге")
     public PersonalDataPage setBlogName(String name){
         fillField(blogName,name);
         return this;
     }
 
+    @Step("Ввод даты рождения пользователя")
     public PersonalDataPage setBirthday(String date) {
         fillField(birthday,date);
         return this;
     }
 
+    @Step("Выбор страны пользователя")
     public PersonalDataPage setCountry(String country){
         selectFromListBox(countryListBox, country);
         return this;
     }
 
+    @Step("Выбор города пользователя")
     public PersonalDataPage setCity(String city){
         selectFromListBox(cityListBox, city);
         return this;
     }
 
+    @Step("Выбор уровня знания английского языка")
     public PersonalDataPage setEnglishSkill(String level){
         selectFromListBox(englishSkill,level);
         return this;
     }
 
+    @Step("Получение имени пользователя")
     public String getFirstNameRus(){
         return getFieldValue(firstNameRus);
     }
 
+    @Step("Получение имени пользователя латиницей")
     public String getFirstNameEng(){
         return getFieldValue(firstNameEng);
     }
 
+    @Step("Получение фамилии пользователя")
     public String getLastNameRus(){
         return getFieldValue(lastNameRus);
     }
 
+    @Step("Получение фамилии пользователя латиницей")
     public String getLastNameEng(){
         return getFieldValue(lastNameEng);
     }
 
+    @Step("Получение имени в блоге")
     public String getBlogName(){
         return getFieldValue(blogName);
     }
 
+    @Step("Получение даты рождения пользователя")
     public String getBirthday(){
         return getFieldValue(birthday);
     }
 
+    @Step("Получение страны пользователя")
     public String getCountry(){
         return getFieldValue(countryListBox);
     }
 
+    @Step("Получение города пользователя")
     public String getCity(){
         return getFieldValue(cityListBox);
     }
 
+    @Step("Получение уровня знаний английского языка")
     public String getEnglishSkill(){return getFieldValue(englishSkill);}
 
+    @Step("Сохранение данных о пользователе в личном кабинете")
     public void saveForm(boolean redirect){
         if(redirect){
             driver.findElement(saveAndContinue).click();
@@ -122,6 +143,7 @@ public class PersonalDataPage extends CommonElements {
         }
     }
 
+    @Step("Добавление контакта пользователя")
     public PersonalDataPage addContact(String type, String value){
         String typeOfContact = "(//button[@title='%s'])[last()]";
         String contactInput = "//div[text()='%s']/ancestor::*[3]/child::input";
@@ -132,6 +154,7 @@ public class PersonalDataPage extends CommonElements {
         return this;
     }
 
+    @Step("Удаление контактов пользователя")
     public PersonalDataPage cleanContacts(){
         List<WebElement> deletes = driver.findElements(deleteButtons);
         if(deletes.size() > 1){
@@ -143,6 +166,7 @@ public class PersonalDataPage extends CommonElements {
         return this;
     }
 
+    @Step("Получение контакта пользователя")
     public String getContact(String type){
         String locator = "//div[contains(text(),'%s')]/ancestor::*[3]/child::input";
         return getFieldValue(By.xpath(String.format(locator,type)));
